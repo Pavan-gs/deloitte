@@ -1,0 +1,113 @@
+Database : Collection of files & programs which allows the user to access files (Add, inserting, deletion, modify/change)
+
+Benefits : 
+
+Users : DBA, Designer, Developer, End user
+
+Database model : Blue print of database functionality (storage,organised & manipulated)
+
+ERD model
+
+RDBMS : IBM"s DB2, Oracle, Mysql, Maria DB --> SQL
+
+Schema : Description of the Database
+
+1. External/view level --> Individual user level view
+
+2. Conceptual level --> Common user level view
+
+3. Internal level --> Storage view
+
+RDBMS : 
+-----------
+
+Relations --> Tables ( 2 dimensional)
+
+Attributes(columns) and tuples(rows)
+
+Keys
+------
+
+Candidate key : Attribute to distinguish the relationship (ID, contact num, email ID)
+
+Key Attributes  & Non-key attributes
+
+Primary Keys : Unique & Cannot be NULL
+
+Composite Key : Combination of more than one attribute)
+
+ER Modeling : Graphical representation 
+
+Entity   : Customer, Elephant, Car
+
+Entity Type : Employees of a same dept, Airtel subscribers, Maruti
+
+Entity Instance : One entry
+
+Degree of Relationship (cardinality) : An association between 2 or more entities
+
+Simple Attribute
+
+Composite Attribute
+
+Derived Attribute
+
+Single valued
+
+Multi valued 
+
+# Rectangle : Strong Entity
+
+# Double Rectangle : Weak Entity
+
+# Diamonds : Relationship
+
+# Ellipses : Attributes
+
+# Double Ellipses : Multi-values attributes
+
+# Lines : Link between the attributes, entities, relationships
+
+# Double Lines : Total Participation
+
+# Solid Line : Stronger Entity
+
+# Double diamond : Identifying relationship
+
+# SIngle Line : Participation
+
+# Make ER Diagram with following tables;
+
+Person : Driver_ID, Name & Address
+
+Car : License, year & model
+
+Accident : Report_num, Date, Location
+
+Participation : Driver ID, License, Report_num & Damage fine
+
+# Guidelines
+
+1. Not case sensitive
+2. Cluases ( SELECT, FROM, WHERE) are usually placed on seperate lines
+3. Indents are used 
+4. Semicolons
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

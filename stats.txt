@@ -1,0 +1,142 @@
+Continuous random variables  -->  
+Discrete random variables  --> Binomial, Negative binomial,Geometric, Poisson
+
+Hypothesis Testing
+
+Normality Test
+---------------------
+Correlation Test
+---------------------
+
+Parametric  --> Z-test, student's T-test, ANOVA, CHi-square        (mean)
+Non Parametric  --> Kruskal wallis, Mann whitney/wilcoxin sign/rank test (median/location/position)
+
+Empirical rule  --> If the size of the data that belongs to a natural phenomenon is more than 30,(more than 100)
+statistically it tends to follow normal distribution.
+ 
+Central Limit theorem --> The more data you have the more chances gaussian/normal distribution it follows
+
+# The sales manager is claiming in the last year sales has increased to 20 lacs. 
+Is that true or is it just random by chance?
+Is there a statistical evidence to prove his claim?
+
+
+# One sample Test
+avg(sales) --> 20 years --> 15l (5l)    (Population)
+avg(sales)-->last year--> 20l             (Sample)
+
+# Two sample Test
+
+avg(marks) --> Batch 1
+avg(marks) --> Batch 2
+
+Batch2 > Batch 1
+
+# One -tailed Test / Directional Test
+
+avg(sales) of sample > avg(sales) of population
+avg(sales) of sample1 < avg(sales) of sample2
+
+# Two-tailed Test / Non-directional Test
+
+avg(sales) of sample =! avg(sales) of population
+avg(sales) of sample1 =! avg(sales) of sample2
+
+
+# one sample tests
+
+# State Hypothesis
+
+NULL hypothesis  --> sample_mean == population_mean
+
+Alternate Hypothesis  --> sample_mean > population_mean (One tailed)
+
+# sample_mean != population_mean (Two tailed)
+
+# Note down all the details
+
+n = 30
+Population_mean = 100
+sample_mean = 112.5
+std.dev(pop) = 15
+
+# Find out weather it's a one tailed or two tailed test 
+
+# Apply the appropriate test
+
+Z test --> used when the data is normally distributed & the standard deviation of the population is known.
+
+T-test --> if the data is not normally distributed or std. of population is not known
+
+ANOVA --> Two or more samples
+
+Chi-square --> For categorical variables
+
+# Test statistics needs to be calculated
+
+Test stats --> 4.56
+
+# Compare that with the Critical value (Degrees of freedom needs to be obtained in case of T-test, ANOVA, CHI-square)
+
+For all one tailed z-test with alpha 0.05  --> 1.645
+For all two-tailed z-test with alpha 0.05 --> 1.96 
+
+# If the Test stats is greater than the critical value, Alternate Hypothesis otherwise NULL hypothesis
+
+Test Stats(4.56) > Critical.value(1.645) & hence reject H0 and accept (Ha) ALTERNATE HYPOTHESIS
+
+# Yes, Principal's claim is statistically significant enough.
+
+# 2nd problem
+
+H0  --> sample_mean == population_mean
+Ha --> sample_mean != population_mean  [ two-tailed ]
+
+n = 1000
+sample_mean = 6873
+population_mean = 6800
+std_deviation = 400
+
+test_stats = 5.77
+
+C.value = 1.96
+
+Type 1 Error : False positive (Accepted Ha) instead of rejecting it
+Type 2 Error : False Negative (Rejecting Ha) instead of accepting it
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
