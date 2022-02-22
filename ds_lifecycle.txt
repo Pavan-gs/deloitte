@@ -1,0 +1,507 @@
+
+Data Analytics/ Business Analytics / data Science/ Machine learning/Data mining/Knowledge discovery
+
+1990's --> Personal computers, dot com bubble
+
+Large Corporations --> Facebook, Google, yahoo
+
+Digitization
+
+Challenges
+---------------
+
+Volume --> Cost of storage, Portability [Licensed S/W's, High-end servers], Pre-matured death of the data
+
+Velocity --> Speed of data generation
+
+Variety --> Unstructured data, Text, GIF, Audio, Video,Numeric
+
+Veracity --> Authentic
+
+Big Data Ecosystem
+---------------------------
+Hadoop , Spark, Kafka
+
+Data Science Lifecycle
+--------------------------------
+
+ Data Engineering --> Data Collection, storage, processing & managing the data [RDBMS, Hadoop, Cloud]
+
+ Data Analytics --> EDA, Analytics, Statistics, Mathematics, Domain Expertise [R, Pandas, Excel, matlab, SQL]
+
+ Data Visualisation/Business Intelligence --> Reports, Charts, Presentations, Dashboards [Power BI, Tableau, Qlikview, Lookr]
+
+ Advanced Analytics --> Machine Learning, Deep Learning algorithms
+
+ Solution Development
+
+ Data Driven Decision Making
+
+ Data science process --> EDA, Data clean, Analyse,Visualise, Data preparation, Machine learning --> Solution development
+ 
+Problem Statement
+
+No specific problem statement
+
+Analytics
+------------
+Descriptive analytics --> What's happening
+
+Diagnostic analytics --> Why, how
+
+Predictive analytics --> What will happen
+
+Prescriptive analytics ---> What should happen
+
+
+# Over fitting & Underfitting [Bias and Variance trade off]
+
+Bias --> Difference between predicted & expected values
+
+Variance --> Learning too much in the training (noise)
+
+1. Ridge Regression (L2 Regularization) --> Introducing penalty by doing (lambda*slope2)
+
+2. Lasso (L1) --> Absolute value of the co-efficient
+
+3. ElasticNet (L3)
+
+
+Supervised Learning  --> Predictive models on numerical & categorical data[Regression, Classification], Time Series, Recommendation, Text data [ NLP ], Image data [Computer vision]
+
+Un-Supervised Learning --> Clustering, Market Basket Association, SOM's, Encoders, Auto-encodes, Boltzmann Machines
+
+
+Hadoop
+-----------
+
+HDFS [Hadoop Distributed File System] :--> Storage Layer of Hadoop
+
+MAPREDUCE 2 [YARN : Yet Another Resource Negotiator] --> Processing Layer of Hadoop
+
+Pig : Adhoc Query Language, Data flow Language --> Load, Transform(Filter, generate,describe,avg) & dump or store, Pig Latin (SQL like)
+
+Hive : Data Warehousing like solution, Hive Query Language (HQL)
+
+Squoop (data migration with other databases) and Flume(import or export data from/to Web)
+
+Oozie --> Scheduler
+
+Mahout --> ML library(Java)
+
+Zoo keeper --> Job Co-ordinator
+
+HBase --> Hadoop database (Nosql columnar)
+
+Spark --> Alternative to YARN  (100 times faster than MR/YARN), Spark SQL, Spark MLlib, Spark Streaming (Pyspark)
+
+
+Hadoop Clusters     : Hadoop Programs running in mulptiple machines/servers/nodes
+-----------------------
+
+Each hadoop server is capable of managing 10 TB of data for ex.
+
+300*10 --> 3PB --> 3000 TB
+
+Reliance --> 3000 outlets
+
+Hadoop Chars
+--------------------
+Scalable
+
+Cost Effective    --> Opensource, Cheap - commodity hardwares
+
+Flexible
+
+Fault tolerant
+
+
+Hadoop Vendors
+-----------------------
+
+Apache foundation --> Apache Hadoop
+
+Cloudera
+
+Hortonworks
+
+MapR
+
+MS HD INSIGHTS
+
+IBM BIG INSIGHTS
+
+HDFS [Hadoop Distributed File System] :--> Storage Layer of Hadoop
+---------------------------------------------------------------------------------------------
+
+Master --> Name Node --> Maintains and manages the blocks which are present in the data nodes
+It keeps track of the entire data / directory structure and also the placement of the data blocks
+
+Slave machines --> Data nodes --> Responsible for serving read and write requests for the clients, data is stored and processed here
+
+Cluster Config :
+-------------------
+Pseudo distribution mode : Configuring hadoop to run on single server
+
+Fully distribution mode : Configuring hadoop to run on multiple server
+
+Hadoop cluster with daemons
+----------------------------------------- 
+File Storage
+----------------
+
+Files are split into physical blocks of maximum 128 mb storage space, further replicated 3 times by default and stored in the data nodes
+
+Stores the data in blocks
+
+Hadoop1 --> 64 mb
+
+Hadoop2 --> 128 mb
+
+280 mb file data in hadoop
+
+the data is devided into blocks of 128 mb
+
+1b --> 128 mb
+2b --> 128 mb
+3b --> 24mb
+
+Replication factor is 3 by default and can be configured by the Admin
+
+Name node
+----------------
+Stores the meta data --> List of files, list of blocks and its replications for each files, list of data nodes for each blocks, file attributes, access_time, transaction_log  etc.
+
+Rack Awareness
+---------------------
+
+Read/write
+
+When you submit a read/write request --> request is taken by hadoop library refered as Hadoop Client (Hadoop FS)
+
+Interface between User & the Hadoop
+
+a) hadoop fs -put /sourcepath/destination_path
+
+HDFS
+-------
+
+1. The Client takes the request, splits the data into blocks and replications
+
+2. Client takes the list of data node details where it has to write the data from  "Name Node"  for all the blocks with replications
+
+3. Client write the blocks in parallel 
+
+4. The pipeline of data node is prepared on the proximity for replication (Replication is written in serial)
+
+Name node has following details:
+
+Heartbeat of the data node
+Total storage capacity in use
+number of data transfer currently in progress
+
+Hadoop 1 : Name node (Single point of failure) --> Only one name node
+
+Secondary Name node --> Manual back-up  (hourly/daily/weekly) --> Daemon --> Not a auto back-up
+
+Hadoop 2
+-------------
+
+High - Availability --> Active and standby name nodes 
+
+No need of secondary name node
+
+Limitation of Hadoop 1 :--> Manual back-up, single name space (Limited by single RAM to store single name space)
+
+Federation  --> 
+
+/HR/ ---> Name node 1
+
+/FI/ --> Name node 2
+
+/Emp/ --> Name node 3
+
+# Cluster config
+---------------------
+
+Namenode, datanode, Resource Manager, node manager --> Localhost
+
+# Commands
+
+start-dfs.sh --> To start hdfs daemons
+stop-dfs.sh
+start-yarn.sh--> To start mapreduce service
+stop-mapred.sh
+
+sudo jps --> To check the daemons running
+
+localhost/50070 --> To browse the hadoop filesystem
+
+Local
+-------
+ls --> Listing folders/files
+cd<foldername> --> changing directory
+mkdir <foldername> --> create a new directory
+gedit <filename>--> create/edit a file
+cat <filename>--> view a file
+
+Hadoop
+-----------
+
+hadoop version
+
+hadoop fs -ls /
+hadoop fs -mkdir /<folder_name>
+
+To copy files from local to Hdfs
+-----------------------------------------------
+hadoop fs  - put <source foldername/file_name /des_name/file_name
+
+hadoop fs -put '/home/hduser/deloitte/new.txt' /deloitte_feb
+
+hadoop fs -cat /deloitte_feb/new.txt
+
+hadoop fs -copyfromlocal source dest
+
+To copy data from Hdfs to local
+-------------------------------------------
+
+hadoop fs -get /deloitte_feb/new1.txt '/home/hduser/deloitte/new1.txt'
+
+hadoop fs -copytolocal source dest
+
+
+core-site.xml --> NN
+yarn-site.xml --> RM
+
+slaves --> DN & NM
+
+hdfs-site.xml --> Replication factor
+yarn-site.xml --> Process specific settings
+
+hadoop-env.sh -->offers way to specify heapsize : memory allocated for JVM
+
+Pseudo DM {Single machine}
+----------------
+
+Install Linux, JDK, Download all Hadoop Jars, untar
+
+Mapreduce 1 :--> Job Tracker --> Master --> Burden (managing cluster level resources(CPU/RAM), scheduling jobs, managing, monitering every task)
+
+Task Tracker --> Slave  --> Allocation of resources for all the tasks 
+
+Mapreduce/YARN/Yet Another Resource Negotiator [Processing layer of Hadoop] ----> Parallel Processing
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Resource Manager --> Master --> Manages cluster level resources, scheduling of jobs
+
+Application Master --> Present for each jobs(for 100 jobs, 100 AM)
+
+Node Manager --> Slave --> Manages allocation of tasks
+
+Mapper
+Reducer
+
+Map function
+Reduce function
+
+ Combiners
+
+ Partitioners
+
+ 
+Challenges
+----------------
+Split, distribute and managing the data
+Running/processing data in parallel with fault tolerance
+Aggregation/consolidation
+
+Mapreduce
+----------------
+
+240 mb file
+
+2 blocks
+1st b --> 128 mb
+2nd b-->112 mb
+
+Map class :--> Implements the business logic --> Overrides the map method     (Select * from Churn where balance>10000)
+
+Reduce class:--> Aggregation logic-->Overrides the reduce method  (count)
+
+Framework itself reads the data from blocks & gives it to the mappers
+
+Inputformat class is responsible to read the data from blocks and giving it to the mappers & reducers
+
+Textfiles --> Textinput format
+XML --> XML inputformat
+binary --> Sequence fileformat
+
+Mapreduce flow
+-----------------------
+
+4 stages of data
+----------------------
+
+1. Mapper Input (Business Logic)
+
+// we are learning python, learning python is new to us
+
+2. Mapper o/p 
+
+we,1
+are,1
+learning,1
+python,1
+learning,1
+python,1
+is,1
+to,1
+new,1
+us,1
+
+Combiner --> (we,1)
+(are,1)
+(learning,1,1)
+(python,1,1)
+
+3. Reducer input --> Same as Mapper output
+
+4. Reducer output --> Aggregation Logic (Take the sum of the values beloging to the same key)
+
+Partitioner 
+
+we,1
+are,1
+learning,2
+python,2
+new,1
+us,1
+
+map task --> Input splits --> num_mappers
+
+Get data from input splits
+process
+output --> Intermediate or temporary output
+
+Reduce task --> (by default is always 1)
+
+Read from all map task
+process
+output --> stored in hdfs --> blcoks and replications
+
+Mapreduce program in Python
+-----------------------------------------
+
+Hadoop Streaming --> Utility that comes with the Hadoop distribution which helps you run executables scripts of Python, R
+
+echo "hi iam new to python but iam finding python easy though iam new" | python mapper.py | sort -k1,1 | /home/hduser/
+
+cat wrdcount_feb.txt |python mapper.py |sort -k1,1|python reducer.py
+
+Give executable permissions to the python scripts
+
+chmod 777 mapper.py reducer.py
+
+chmod+x /mapper.py
+chmod+x /reducer.py
+
+hadoop jar /home/hduser/del/hadoop-streaming-2.7.3.jar \ 
+
+-input  /deloitte_feb/wrdcount_feb.txt \
+
+-output /deloitte_feb/output \
+
+-mapper /home/hduser/del/mapper.py
+
+-reducer /home/hduser/del/reducer.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
