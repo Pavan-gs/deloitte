@@ -1,0 +1,166 @@
+sudo hive
+
+set hive.cli.print.header=true;
+set hive.cli.print.current.db=true;
+
+show databases;
+
+create database deloitte;
+
+show databases;
+
+create database if not exists deloitte;
+
+describe database deloitte;
+
+describe extended database deloitte;
+
+describe formatted database deloitte;
+
+use deloitte;
+
+create table employee(name string, salary float, dept string)
+row format delimited
+fields terminated by ',';
+
+//When line 2 and 3 is not specified, the data in the files is assumed to be delimited with ASCII 001(ctrl-A) as the field delimiter and newline as the row delimiter.
+
+show tables;
+
+load data local inpath 'abc.txt' into table employee;
+
+select * from employee;
+
+load data inpath 'emp.txt' into table employee;
+
+describe extended employee;
+
+create external table employee2(name string, salary float, dept string)
+row format delimited
+fields terminated by ','
+location '/data';
+
+// I don't even load the data in case of external table
+
+select * from employee2;
+
+describe extended employee2;
+
+
+load data local inpath 'abc.txt' overwrite into table employee;
+
+insert overwrite directory '/data' select * from employee;
+
+drop table employee;
+
+drop table employee2;
+
+**********************************************************
+
+create external table employee2(name string, salary float, dept string)
+row format delimited 
+fields terminated by ','
+location '/data'; 
+
+create table employee(name string, salary float, dept string)
+partitioned by(country string, state string)
+row format delimited
+fields terminated by ',';
+
+load data local inpath 'abc.txt' into table employee
+partition(country='INDIA',state='KAR');
+
+load data local inpath 'abc1.txt' into table employee
+partition(country='INDIA',state='TN');
+
+load data local inpath 'emp.txt' into table employee
+partition(country='INDIA',state='MAH');
+
+load data local inpath 'emp1.txt' into table employee
+partition(country='SRILANKA',state='COL');
+
+show partitions employee;
+
+alter table employee drop if exists partition (country='INDIA',state='KAR');
+
+select * from employee;
+select * from employee where state='KAR';
+
+create table kar_emp 
+as select name,salary,dept from employee
+where state='KAR';
+
+// Here schema for the new table is taken from the select clause
+
+create table kar_emp
+as select * from employee
+where state='KAR';
+
+create external table employee9(name string, salary float, dept string)
+partitioned by (country string, state string)
+row format delimited
+fields terminated by ',';
+
+alter table employee9
+add partition(country='INDIA',state='KAR')
+location '/mrdata';
+
+alter table employee9
+add partition(country='INDIA',state='WB')
+location '/OCT1/WB_EMP';
+
+select * from employee2;
+
+ALTER TABLE employee2 ADD IF NOT EXISTS
+PARTITION (country='INDIA',state='TN') LOCATION '/tn/'
+PARTITION (country='INDIA',state='MH') LOCATION '/mh/';
+
+# Static Partition
+-----------------------
+
+create table master( name string, salary int, dept string)
+row format delimited
+fields terminated by ',';
+
+load data inpath '/data/file.txt' into table master;
+
+create table stitic_part(name string, salary int)
+partitioned by (dept string);
+row format delimited
+fields terminated by ',';
+
+insert into table static_part (dept ="HR") select name salary from master where dept = "HR";
+
+# Dynamic Partition
+---------------------------
+
+set hive.exec.dynamic.partition.mode=nonstrict;
+
+create table Dynamic_part(name string, salary int)
+partitioned by (dept string);
+row format delimited
+fields terminated by ',';
+
+insert into table Dynamic_part (dept) select name salary from master where dept = "HR";
+
+# Buckets 
+-------------
+create table master1( name string, dept string, salary int)
+row format delimited
+fields terminated by ',';
+
+load data inpath '/data/file.txt' into table master;
+
+
+
+create table buckets(name string, dept string, salary int)
+comment 'bucketing on salary column' 
+clustered by(salary) into 3 buckets 
+stored as textfile;
+
+insert into table buckets select * from master; 
+
+
+
+
+quit;
